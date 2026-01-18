@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>კონტაქტი - მწვანე საქართველო</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo h1 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #a8d08d;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #a8d08d;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.9), rgba(74, 124, 44, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%234a7c2c" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #f5f9f3 0%, #e8f3e0 100%);
+            padding: 3rem;
+            border-radius: 15px;
+        }
+
+        .contact-info h3 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: #4a7c2c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .info-content h4 {
+            color: #2d5016;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-content p {
+            color: #666;
+        }
+
+        .info-content a {
+            color: #4a7c2c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-content a:hover {
+            color: #2d5016;
+        }
+
+        .contact-form {
+            background: #f5f9f3;
+            padding: 3rem;
+            border-radius: 15px;
+        }
+
+        .contact-form h3 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d5016;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #d4e8c8;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4a7c2c;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4a7c2c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #2d5016;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 124, 44, 0.3);
+        }
+
+        .locations-section {
+            padding: 5rem 5%;
+            background: #f5f9f3;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d5016;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #4a7c2c;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .locations-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .location-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .location-header {
+            background: linear-gradient(135deg, #4a7c2c 0%, #2d5016 100%);
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .location-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-header h4 {
+            font-size: 1.5rem;
+        }
+
+        .location-body {
+            padding: 2rem;
+        }
+
+        .location-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .location-detail i {
+            color: #4a7c2c;
+            margin-top: 0.2rem;
+        }
+
+        .map-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f5f9f3;
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #e8f3e0 0%, #d4e8c8 100%);
+            height: 500px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-placeholder i {
+            font-size: 5rem;
+            color: #4a7c2c;
+        }
+
+        footer {
+            background: #2d5016;
+            color: white;
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #a8d08d;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #a8d08d;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #4a7c2c;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #a8d08d;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #4a7c2c;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h2 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://edu.tbcbank.ge/" target="_blank">
+                    <img src="https://i.postimg.cc/ZKZwXb0r/tbc-logo.png" alt="TBC Logo">
+                </a>
+                <h1>მწვანე საქართველო</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">მთავარი</a></li>
+                <li><a href="about.html">ჩვენს შესახებ</a></li>
+                <li><a href="services.html">სერვისები</a></li>
+                <li><a href="news.html">სიახლეები</a></li>
+                <li><a href="contact.html" class="active">კონტაქტი</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h2>დაგვიკავშირდი</h2>
+    </div>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>საკონტაქტო ინფორმაცია</h3>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>სათაო ოფისი</h4>
+                        <p>ვაჟა-ფშაველას გამზირი 45<br>თბილისი 0186, საქართველო</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>ტელეფონი</h4>
+                        <p><a href="tel:+995555123456">+995 555 123 456</a></p>
+                        <p><a href="tel:+995322123456">+995 322 123 456</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>ელ. ფოსტა</h4>
+                        <p><a href="mailto:info@greengeorgia.ge">info@greengeorgia.ge</a></p>
+                        <p><a href="mailto:support@greengeorgia.ge">support@greengeorgia.ge</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>სამუშაო საათები</h4>
+                        <p>ორშაბათი - პარასკევი: 09:00 - 18:00</p>
+                        <p>შაბათი: 10:00 - 15:00</p>
+                        <p>კვირა: დახურულია</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>სოციალური ქსელები</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>გამოგვიგზავნე შეტყობინება</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">სახელი და გვარი *</label>
+                        <input type="text" id="name" required placeholder="შენი სახელი">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">ელ. ფოსტა *</label>
+                        <input type="email" id="email" required placeholder="example@mail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">ტელეფონი</label>
+                        <input type="tel" id="phone" placeholder="+995 555 123 456">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">თემა *</label>
+                        <select id="subject" required>
+                            <option value="">აირჩიე თემა</option>
+                            <option value="general">ზოგადი შეკითხვა</option>
+                            <option value="volunteer">მოხალისეობა</option>
+                            <option value="partnership">პარტნიორობა</option>
+                            <option value="report">დარღვევის შეტყობინება</option>
+                            <option value="feedback">გამოხმაურება</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">შეტყობინება *</label>
+                        <textarea id="message" required placeholder="დაწერე შენი შეტყობინება..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">გაგზავნა</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="locations-section">
+        <h2 class="section-title">ჩვენი ფილიალები</h2>
+        <div class="locations-grid">
+            <div class="location-card">
+                <div class="location-header">
+                    <i class="fas fa-building"></i>
+                    <h4>ვაკის ფილიალი</h4>
+                </div>
+                <div class="location-body">
+                    <div class="location-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>ილია ჭავჭავაძის გამზ. 37<br>თბილისი, საქართველო</span>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+995 555 234 567</span>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>ყოველდღე: 10:00 - 19:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-header">
+                    <i class="fas fa-recycle"></i>
+                    <h4>საბურთალოს ცენტრი</h4>
+                </div>
+                <div class="location-body">
+                    <div class="location-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>ალექსანდრე ყაზბეგის გამზ. 15<br>თბილისი, საქართველო</span>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+995 555 345 678</span>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>ყოველდღე: 09:00 - 18:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-header">
+                    <i class="fas fa-store"></i>
+                    <h4>ისნის პუნქტი</h4>
+                </div>
+                <div class="location-body">
+                    <div class="location-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>ქეთევან დედოფლის გამზ. 3<br>თბილისი, საქართველო</span>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+995 555 456 789</span>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>ორ-შაბ: 10:00 - 18:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <h2 class="section-title">ჩვენი ადგილმდებარეობა</h2>
+        <div class="map-container">
+            <div class="map-placeholder">
+                <i class="fas fa-map"></i>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>მწვანე საქართველო</h3>
+                <p>ჩვენი მისიაა საქართველოში გარემოსდაცვითი ცნობიერების ამაღლება და აქტიური მოქალაქეების ჩართულობა</p>
+            </div>
+            <div class="footer-section">
+                <h3>სწრაფი ბმულები</h3>
+                <a href="about.html">ჩვენს შესახებ</a>
+                <a href="services.html">სერვისები</a>
+                <a href="news.html">სიახლეები</a>
+                <a href="contact.html">კონტაქტი</a>
+            </div>
+            <div class="footer-section">
+                <h3>კონტაქტი</h3>
+                <p><i class="fas fa-envelope"></i> info@greengeorgia.ge</p>
+                <p><i class="fas fa-phone"></i> +995 555 123 456</p>
+                <p><i class="fas fa-map-marker-alt"></i> თბილისი, საქართველო</p>
+            </div>
+            <div class="footer-section">
+                <h3>მიგვყევი</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 მწვანე საქართველო. ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('შენი შეტყობინება წარმატებით გაიგზავნა! ჩვენ დაგიკავშირდებით უახლოეს დროში.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

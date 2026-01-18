@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ჩვენს შესახებ - მწვანე საქართველო</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo h1 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #a8d08d;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #a8d08d;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.9), rgba(74, 124, 44, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%234a7c2c" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-section {
+            background: white;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .story-text h3 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-text p {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .story-image {
+            background: linear-gradient(135deg, #e8f3e0 0%, #d4e8c8 100%);
+            height: 400px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .story-image i {
+            font-size: 6rem;
+            color: #4a7c2c;
+        }
+
+        .mission-vision {
+            background: #f5f9f3;
+            padding: 5rem 5%;
+        }
+
+        .mission-vision-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d5016;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #4a7c2c;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .mv-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mv-card i {
+            font-size: 3rem;
+            color: #4a7c2c;
+            margin-bottom: 1rem;
+        }
+
+        .mv-card h3 {
+            color: #2d5016;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .mv-card p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .values-section {
+            background: white;
+            padding: 5rem 5%;
+        }
+
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f9f3 0%, #e8f3e0 100%);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .value-item i {
+            font-size: 2.5rem;
+            color: #4a7c2c;
+            margin-bottom: 1rem;
+        }
+
+        .value-item h4 {
+            color: #2d5016;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-item p {
+            color: #666;
+        }
+
+        .quality-section {
+            background: #f5f9f3;
+            padding: 5rem 5%;
+        }
+
+        .quality-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quality-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .badge {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 3px solid #4a7c2c;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .badge i {
+            font-size: 3rem;
+            color: #4a7c2c;
+            margin-bottom: 1rem;
+        }
+
+        .badge h4 {
+            color: #2d5016;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: #2d5016;
+            color: white;
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #a8d08d;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #a8d08d;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #4a7c2c;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #a8d08d;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #4a7c2c;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h2 {
+                font-size: 2rem;
+            }
+
+            .story-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://edu.tbcbank.ge/" target="_blank">
+                    <img src="https://i.postimg.cc/ZKZwXb0r/tbc-logo.png" alt="TBC Logo">
+                </a>
+                <h1>მწვანე საქართველო</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">მთავარი</a></li>
+                <li><a href="about.html" class="active">ჩვენს შესახებ</a></li>
+                <li><a href="services.html">სერვისები</a></li>
+                <li><a href="news.html">სიახლეები</a></li>
+                <li><a href="contact.html">კონტაქტი</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h2>ჩვენს შესახებ</h2>
+    </div>
+
+    <section class="story-section content-section">
+        <div class="story-content">
+            <div class="story-text">
+                <h3>ჩვენი ისტორია</h3>
+                <p>მწვანე საქართველო დაფუძნდა 2024 წელს, როდესაც ახალგაზრდა ეკო-აქტივისტების ჯგუფმა გადაწყვიტა შეექმნა პლატფორმა, რომელიც საქართველოში გარემოსდაცვით პრობლემებზე ცნობიერების ამაღლებას შეუწყობდა ხელს.</p>
+                <p>ჩვენ შევამჩნიეთ, რომ ინფორმაცია ეკოლოგიური პრობლემების შესახებ იყო ფრაგმენტული და რთულად მისაწვდომი, განსაკუთრებით ახალგაზრდებისთვის. შევქმენით ციფრული პლატფორმა, რომელიც აერთიანებს ყველა საჭირო რესურსს ერთ ადგილას.</p>
+                <p>დღეს ჩვენ ვართ 100+ აქტიური მოხალისის საზოგადოება, რომელიც მუშაობს საქართველოს უფრო მწვანე და სუფთა მომავლისთვის.</p>
+            </div>
+            <div class="story-image">
+                <i class="fas fa-seedling"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-vision">
+        <div class="mission-vision-container">
+            <h2 class="section-title">ჩვენი მისია და ხედვა</h2>
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>მისია</h3>
+                    <p>ჩვენი მისიაა საქართველოში გარემოსდაცვითი ცნობიერების ამაღლება და აქტიური მოქალაქეების ჩართულობის გაზრდა ეკოლოგიურ საკითხებში. ვქმნით ხელმისაწვდომ და ინტერაქტიულ პლატფორმას, რომელიც ყველას საშუალებას აძლევს გახდეს ცვლილების ნაწილი.</p>
+                </div>
+                <div class="mv-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>ხედვა</h3>
+                    <p>ვხედავთ საქართველოს, სადაც თითოეული მოქალაქე აქტიურად მონაწილეობს გარემოს დაცვაში. სადაც ციფრული ტექნოლოგიები და მოქალაქეთა ჩართულობა ქმნის ეკოლოგიურად მდგრად საზოგადოებას მომავალი თაობებისთვის.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <h2 class="section-title">ჩვენი ღირებულებები</h2>
+        <div class="values-grid">
+            <div class="value-item">
+                <i class="fas fa-hands-helping"></i>
+                <h4>თანამშრომლობა</h4>
+                <p>ერთად უფრო ძლიერები ვართ</p>
+            </div>
+            <div class="value-item">
+                <i class="fas fa-lightbulb"></i>
+                <h4>ინოვაცია</h4>
+                <p>ტექნოლოგიები ბუნების სამსახურში</p>
+            </div>
+            <div class="value-item">
+                <i class="fas fa-leaf"></i>
+                <h4>მდგრადობა</h4>
+                <p>მომავლის გათვალისწინება</p>
+            </div>
+            <div class="value-item">
+                <i class="fas fa-users"></i>
+                <h4>ინკლუზიურობა</h4>
+                <p>ყველა ხმა მნიშვნელოვანია</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="quality-section">
+        <div class="quality-content">
+            <h2 class="section-title">ხარისხი და სანდოობა</h2>
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">ჩვენ ვთანამშრომლობთ საუკეთესო ეკოლოგიურ ორგანიზაციებთან და ექსპერტებთან, რათა უზრუნველვყოთ ყველაზე ზუსტი და სანდო ინფორმაცია გარემოსდაცვითი საკითხების შესახებ.</p>
+            <div class="quality-badges">
+                <div class="badge">
+                    <i class="fas fa-certificate"></i>
+                    <h4>ვერიფიცირებული ინფორმაცია</h4>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>მონაცემთა უსაფრთხოება</h4>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-award"></i>
+                    <h4>ექსპერტთა მხარდაჭერა</h4>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-globe"></i>
+                    <h4>საერთაშორისო სტანდარტები</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>მწვანე საქართველო</h3>
+                <p>ჩვენი მისიაა საქართველოში გარემოსდაცვითი ცნობიერების ამაღლება და აქტიური მოქალაქეების ჩართულობა</p>
+            </div>
+            <div class="footer-section">
+                <h3>სწრაფი ბმულები</h3>
+                <a href="about.html">ჩვენს შესახებ</a>
+                <a href="services.html">სერვისები</a>
+                <a href="news.html">სიახლეები</a>
+                <a href="contact.html">კონტაქტი</a>
+            </div>
+            <div class="footer-section">
+                <h3>კონტაქტი</h3>
+                <p><i class="fas fa-envelope"></i> info@greengeorgia.ge</p>
+                <p><i class="fas fa-phone"></i> +995 555 123 456</p>
+                <p><i class="fas fa-map-marker-alt"></i> თბილისი, საქართველო</p>
+            </div>
+            <div class="footer-section">
+                <h3>მიგვყევი</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 მწვანე საქართველო. ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+</body>
+</html>

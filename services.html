@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>სერვისები - მწვანე საქართველო</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo h1 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #a8d08d;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #a8d08d;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.9), rgba(74, 124, 44, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%234a7c2c" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d5016;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #4a7c2c;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .three-rs-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .rs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rs-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .rs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .r-card {
+            background: linear-gradient(135deg, #f5f9f3 0%, #e8f3e0 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .r-card:hover {
+            border-color: #4a7c2c;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .r-icon {
+            width: 100px;
+            height: 100px;
+            background: #4a7c2c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .r-card:hover .r-icon {
+            transform: rotate(360deg);
+        }
+
+        .r-icon i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .r-card h3 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .r-card p {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .r-examples {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .r-examples h4 {
+            color: #4a7c2c;
+            margin-bottom: 0.5rem;
+        }
+
+        .r-examples ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .r-examples li {
+            padding: 0.5rem 0;
+            color: #666;
+        }
+
+        .r-examples li::before {
+            content: "✓ ";
+            color: #4a7c2c;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .services-section {
+            padding: 5rem 5%;
+            background: #f5f9f3;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-image {
+            height: 250px;
+            background: linear-gradient(135deg, #4a7c2c 0%, #2d5016 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-image i {
+            font-size: 5rem;
+            color: white;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            color: #2d5016;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-content p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li i {
+            color: #4a7c2c;
+            margin-right: 0.5rem;
+        }
+
+        .learn-more {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #4a7c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .learn-more:hover {
+            background: #2d5016;
+            transform: translateX(5px);
+        }
+
+        footer {
+            background: #2d5016;
+            color: white;
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #a8d08d;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #a8d08d;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #4a7c2c;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #a8d08d;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #4a7c2c;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h2 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://edu.tbcbank.ge/" target="_blank">
+                    <img src="https://i.postimg.cc/ZKZwXb0r/tbc-logo.png" alt="TBC Logo">
+                </a>
+                <h1>მწვანე საქართველო</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">მთავარი</a></li>
+                <li><a href="about.html">ჩვენს შესახებ</a></li>
+                <li><a href="services.html" class="active">სერვისები</a></li>
+                <li><a href="news.html">სიახლეები</a></li>
+                <li><a href="contact.html">კონტაქტი</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h2>ჩვენი სერვისები</h2>
+    </div>
+
+    <section class="three-rs-section">
+        <div class="rs-container">
+            <h2 class="section-title">3Rs პრინციპები</h2>
+            <p class="rs-intro">
+                3Rs არის გარემოს დაცვის ოქროს წესი: Reduce (შემცირება), Reuse (ხელახალი გამოყენება), Recycle (გადამუშავება). ეს სამი მარტივი პრინციპი დაგეხმარება ყოველდღიურ ცხოვრებაში გახადო შენი ცხოვრება უფრო ეკოლოგიური და მდგრადი.
+            </p>
+            
+            <div class="rs-grid">
+                <div class="r-card">
+                    <div class="r-icon">
+                        <i class="fas fa-minus-circle"></i>
+                    </div>
+                    <h3>Reduce - შემცირება</h3>
+                    <p>შეამცირე ნარჩენების რაოდენობა და რესურსების მოხმარება. ეს პირველი და ყველაზე ეფექტური ნაბიჯია.</p>
+                    <div class="r-examples">
+                        <h4>როგორ შეგიძლია:</h4>
+                        <ul>
+                            <li>იყიდე მხოლოდ საჭირო პროდუქტები</li>
+                            <li>თავი აარიდე ერთჯერადი პლასტიკის გამოყენებას</li>
+                            <li>გამოიყენე მრავალჯერადი ჩანთები</li>
+                            <li>აარჩიე მინიმალური შეფუთვით პროდუქტები</li>
+                            <li>დაზოგე ენერგია და წყალი</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="r-card">
+                    <div class="r-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Reuse - ხელახალი გამოყენება</h3>
+                    <p>გამოიყენე ნივთები რამდენჯერმე შესაძლებელია. მიეცი მათ მეორე სიცოცხლე.</p>
+                    <div class="r-examples">
+                        <h4>როგორ შეგიძლია:</h4>
+                        <ul>
+                            <li>გამოიყენე მრავალჯერადი ბოთლები</li>
+                            <li>შეაკეთე გაფუჭებული ნივთები</li>
+                            <li>გაუზიარე სხვებს არასაჭირო ნივთები</li>
+                            <li>იყიდე და გაყიდე მეორადი ნივთები</li>
+                            <li>გარდაქმენი ძველი ნივთები ახალ ფუნქციაში</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="r-card">
+                    <div class="r-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>Recycle - გადამუშავება</h3>
+                    <p>დაალაგე და გადააგზავნე ნარჩენები გადამუშავებაზე. ეს ბოლო, მაგრამ მნიშვნელოვანი ნაბიჯია.</p>
+                    <div class="r-examples">
+                        <h4>რას შეიძლება გადაამუშავო:</h4>
+                        <ul>
+                            <li>ქაღალდი და მუყაო</li>
+                            <li>პლასტიკური ბოთლები და კონტეინერები</li>
+                            <li>მინა და ლითონი</li>
+                            <li>ელექტრონული მოწყობილობები</li>
+                            <li>ბატარეები და აკუმულატორები</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <h2 class="section-title">ჩვენი სერვისები</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-image">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>რეციკლირების რუკა</h3>
+                    <p>იპოვე უახლოესი გადამუშავების პუნქტები შენს უბანში ინტერაქტიული რუკის საშუალებით.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> 50+ რეციკლირების პუნქტი</li>
+                        <li><i class="fas fa-check"></i> რეალურ დროში განახლება</li>
+                        <li><i class="fas fa-check"></i> სამუშაო საათები და კონტაქტები</li>
+                        <li><i class="fas fa-check"></i> მარშრუტის დაგეგმვა</li>
+                    </ul>
+                    <a href="index.html#map-section" class="learn-more">იხილე რუკა <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>ღონისძიებების კალენდარი</h3>
+                    <p>მონაწილეობა მიიღე ეკო-ღონისძიებებში, დასუფთავების აქციებში და საგანმანათლებლო პროგრამებში.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> ყოველკვირეული ღონისძიებები</li>
+                        <li><i class="fas fa-check"></i> უფასო ტრენინგები</li>
+                        <li><i class="fas fa-check"></i> მოხალისეობრივი აქციები</li>
+                        <li><i class="fas fa-check"></i> ონლაინ სემინარები</li>
+                    </ul>
+                    <a href="news.html" class="learn-more">ნახე კალენდარი <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="service-content">
+                    <h3>დარღვევის შეტყობინება</h3>
+                    <p>შეგვატყობინე გარემოსდაცვითი დარღვევების შესახებ და ჩვენ გადავცემთ შესაბამის უწყებებს.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> ანონიმური შეტყობინება</li>
+                        <li><i class="fas fa-check"></i> სწრაფი რეაგირება</li>
+                        <li><i class="fas fa-check"></i> სტატუსის თვალთვალი</li>
+                        <li><i class="fas fa-check"></i> უწყებებთან კომუნიკაცია</li>
+                    </ul>
+                    <a href="index.html#report-section" class="learn-more">შეატყობინე <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>მწვანე საქართველო</h3>
+                <p>ჩვენი მისიაა საქართველოში გარემოსდაცვითი ცნობიერების ამაღლება და აქტიური მოქალაქეების ჩართულობა</p>
+            </div>
+            <div class="footer-section">
+                <h3>სწრაფი ბმულები</h3>
+                <a href="about.html">ჩვენს შესახებ</a>
+                <a href="services.html">სერვისები</a>
+                <a href="news.html">სიახლეები</a>
+                <a href="contact.html">კონტაქტი</a>
+            </div>
+            <div class="footer-section">
+                <h3>კონტაქტი</h3>
+                <p><i class="fas fa-envelope"></i> info@greengeorgia.ge</p>
+                <p><i class="fas fa-phone"></i> +995 555 123 456</p>
+                <p><i class="fas fa-map-marker-alt"></i> თბილისი, საქართველო</p>
+            </div>
+            <div class="footer-section">
+                <h3>მიგვყევი</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 მწვანე საქართველო. ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+</body>
+</html>
